@@ -1,12 +1,15 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+// const packageJson = require('./package.json');
+// const deps = packageJson.devDependencies;
 
 module.exports = {
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'out'),
     filename: 'bundle.js',
-    publicPath: 'http://localhost:3002/'
+    publicPath: 'http://localhost:3002/',
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
@@ -24,10 +27,26 @@ module.exports = {
     new ModuleFederationPlugin({
       name: 'crabApp',
       filename: 'remoteEntry.js',
-      exposes: {  
-        MFText: './src/MFText',
+      exposes: {
+        './MFText': './src/MFText',
       },
-      shared: ["react", "react-dom"],
+      // shared: {
+      //   ...deps,
+      //   react: {
+      //     singleton: true,
+      //     eager: true,
+      //     requiredVersion: deps.react,
+      //   },
+      //   'react-dom': {
+      //     singleton: true,
+      //     eager: true,
+      //     requiredVersion: deps['react-dom'],
+      //   },
+      // },
+    }),
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+      chunks: ['main'],
     }),
   ],
   devServer: {
@@ -36,5 +55,6 @@ module.exports = {
     },
     compress: true,
     port: 3002,
+    hot: true,
   },
 };

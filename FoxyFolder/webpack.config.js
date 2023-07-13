@@ -7,7 +7,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: 'http://localhost:8080/',
+        publicPath: 'http://localhost:3001/',
     },
     module: {
         rules: [
@@ -26,19 +26,17 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index.html'),
-
         }),
         new ModuleFederationPlugin({
             name: 'Foxy',
             remotes: {
                 crabApp: 'crabApp@http://localhost:3002/remoteEntry.js',
             },
-            shared: ['react', 'react-dom']
         }),
     ],
     devServer: {
         static: './dist',
-        port: 8080,
+        port: 3001,
         hot: true,
     },
 };

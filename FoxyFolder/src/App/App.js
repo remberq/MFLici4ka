@@ -1,5 +1,12 @@
-import React from 'react';
-// import MFText from 'crabApp/MFText'
-export const App = ({text}) =>{
-   return <button>crabbbbb{text}</button>
-}
+import React, { Suspense } from 'react';
+const MFText = React.lazy(() => import('crabApp/MFText'));
+
+export const App = () => {
+    return (
+        <>
+            <Suspense fallback={<div>...load</div>}>
+                <MFText text={'dsfsdf'} />
+            </Suspense>
+        </>
+    );
+};
