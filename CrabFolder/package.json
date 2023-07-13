@@ -2,10 +2,10 @@
   "name": "crabfolder",
   "version": "1.0.0",
   "description": "This is CrabApp",
-  "main": "index.js",
+  "main": "/src/index.jsx",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --watch",
-    "build": "webpack --mode production --watch"
+    "build": "webpack --mode production"
   },
   "author": "Crab",
   "license": "ISC",

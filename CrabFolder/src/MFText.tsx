@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const MFText: React.FC<{ text: string }> = ({ text }) => {
+const MFText: React.FC<{ text: string }> = ({ text }) => {
   return (
     <>
       <h1>HIIII CRABB!</h1>
@@ -8,3 +8,5 @@ export const MFText: React.FC<{ text: string }> = ({ text }) => {
     </>
   );
 };
+
+export default MFText;
